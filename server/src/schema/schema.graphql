@@ -1,0 +1,81 @@
+scalar Upload
+
+type Query {
+  users: [User]
+  invitations: [Invitation]
+  addresses: [Address]
+}
+
+type Mutation {
+  createUser(displayName: String!, userName: String!, password: String!): User
+  updateUser(
+    _id: String!
+    displayName: String
+    userName: String
+    password: String
+  ): User
+  deleteUser(_id: String!): User
+
+  createInvitation(
+    title: String
+    description: String
+    files: [Upload]
+    lat: String
+    lng: String
+    address: String
+  ): Invitation
+
+  createAddress(
+    title: String
+    address: String
+    lat: String
+    lng: String
+  ): Address
+
+  signin(userName: String!, password: String!): AuthPayload
+}
+
+type User {
+  _id: String
+  displayName: String
+  userName: String
+  addresses: [Address]
+  categories: [Category]
+  invitations: [Invitation]
+}
+
+type Address {
+  _id: String
+  title: String
+  address: String
+  user: User
+  locations: [Location]
+}
+
+type Image {
+  _id: String
+  path: String
+}
+
+type Category {
+  _id: String
+  name: String
+}
+
+type Invitation {
+  _id: String
+  title: String
+  description: String
+  user: User
+  images: [Image]
+  address: Address
+}
+
+type AuthPayload {
+  token: String
+}
+
+type Location {
+  type: String
+  coordinates: [Float]
+}
