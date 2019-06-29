@@ -3,12 +3,17 @@ import getUser from "../utils/getUser";
 
 export default {
   invitations: async (_: any, args: any, context: any) => {
-    const token: string = context.context.req.headers.authorization;
-    const user: any = await getUser(token);
-    if (!user) {
-      throw new Error("Unauthorize request");
+    let query = {};
+    const user: any = await getUser(context);
+    if (user) {
+      query = { user: user._id };
     }
-    return Invitation.find({ user: user._id })
+    return Invitation.find(query)
+      .populate("user")
+      .populate("address");
+  },
+  invitationDetail: async (_: any, args: any, context: any) => {
+    return Invitation.findById(args._id)
       .populate("user")
       .populate("address");
   }

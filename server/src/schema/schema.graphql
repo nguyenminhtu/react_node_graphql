@@ -4,6 +4,8 @@ type Query {
   users: [User]
   invitations: [Invitation]
   addresses: [Address]
+  userProfile: User
+  invitationDetail(_id: String!): Invitation
 }
 
 type Mutation {
@@ -13,6 +15,7 @@ type Mutation {
     displayName: String
     userName: String
     password: String
+    categoryIds: [String]
   ): User
   deleteUser(_id: String!): User
 
@@ -33,6 +36,11 @@ type Mutation {
   ): Address
 
   signin(userName: String!, password: String!): AuthPayload
+  signup(
+    userName: String!
+    displayName: String!
+    password: String!
+  ): AuthPayload
 }
 
 type User {
@@ -49,7 +57,7 @@ type Address {
   title: String
   address: String
   user: User
-  locations: [Location]
+  locations: Location
 }
 
 type Image {

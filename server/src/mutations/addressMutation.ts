@@ -3,8 +3,7 @@ import getUser from "../utils/getUser";
 
 export default {
   createAddress: async (_: any, args: any, context: any) => {
-    const token: string = context.context.req.headers.authorization;
-    const user: any = await getUser(token);
+    const user: any = await getUser(context);
     if (!user) {
       throw new Error("Unauthorize request");
     }

@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import uniqueValidator from "mongoose-unique-validator";
 
 import { categorySchema } from "./Category";
 import { addressSchema } from "./Address";
@@ -7,7 +8,7 @@ import { invitationSchema } from "./Invitation";
 const userSchema = new mongoose.Schema(
   {
     displayName: { type: String, require: true },
-    userName: { type: String, require: true },
+    userName: { type: String, require: true, unique: true },
     password: { type: String, require: true },
     categories: [{ type: categorySchema }],
     addresses: [{ type: addressSchema }],
@@ -15,6 +16,8 @@ const userSchema = new mongoose.Schema(
   },
   { collection: "users", timestamps: true }
 );
+
+userSchema.plugin(uniqueValidator);
 
 const User = mongoose.model("User", userSchema);
 

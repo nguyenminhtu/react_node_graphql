@@ -24,5 +24,14 @@ export default {
       algorithm: "HS256"
     });
     return { token };
+  },
+  signup: async (root: any, args: any) => {
+    const secret = process.env.SECRET;
+    const password = jwt.sign({ password: args.password }, secret);
+    const user = await User.create({ ...args, password });
+    const token = jwt.sign({ userId: user._id }, secret, {
+      algorithm: "HS256"
+    });
+    return { token };
   }
 };

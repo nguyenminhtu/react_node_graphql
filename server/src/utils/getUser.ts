@@ -7,7 +7,11 @@ declare var process: {
   };
 };
 
-const getUser: any = async (token: string) => {
+const getUser: any = async (context: any) => {
+  const token: string = context.context.req.headers.authorization || "";
+  if (token === "") {
+    return null;
+  }
   const hash: any = jwt.verify(token, process.env.SECRET);
   const user = await User.findById(hash.userId);
   if (!user) {
