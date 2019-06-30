@@ -14,7 +14,7 @@ declare var process: {
 
 export default {
   init: async () => {
-    const categories = ["Kid's fashion", "Men's fashion", "Girl's fashion"];
+    const categories = ["Lorem", "Ipsum", "is", "simply", "dummy", "text", "of", "the", "printing", "and", "typesetting", "industry.", "Lorem", "Ipsum", "has", "been", "the", "industry's", "standard", "dummy", "text", "ever", "since", "the", "1500s,", "when", "an", "unknown", "printer", "took", "a", "galley", "of", "type", "and", "scrambled", "it", "to", "make", "a", "type", "specimen", "book"]
     for (let i = 0; i < categories.length; i++) {
       await Category.create({ name: categories[i] });
     }
@@ -39,13 +39,18 @@ export default {
         user: user._id
       });
 
-      await Invitation.create({
-        title: `Invitation 0${i + 1}`,
-        description: `Description 0${i + 1}`,
-        user: user._id,
-        categories: categoryList,
-        address: address._id
-      });
+      for (let invitationItem = 0; invitationItem < 10; invitationItem++) {
+        await Invitation.create({
+          title: `Invitation user 0${i + 1} item ${invitationItem + 1}`,
+          description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.`,
+          user: user._id,
+          categories: categoryList,
+          address: address._id
+        });
+      }
     }
     return "Ok";
   },
