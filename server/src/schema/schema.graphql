@@ -4,6 +4,7 @@ type Query {
   users: [User]
   invitations: [Invitation]
   addresses: [Address]
+  categories: [Category]
   userProfile(_id: String!): User
   currentUserProfile: User
   invitationDetail(_id: String!): Invitation

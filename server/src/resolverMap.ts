@@ -12,14 +12,17 @@ import invitationMutation from "./mutations/invitationMutation";
 import addressQuery from "./queries/addressQuery";
 import addressMutation from "./mutations/addressMutation";
 
+import categoriesQuery from "./queries/categoriesQuery";
 import categoryMutation from "./mutations/categoryMutation";
+
 import systemMutation from "./mutations/systemMutation";
 
 const resolverMap: IResolvers = {
   Query: {
     ...userQuery,
     ...invitationQuery,
-    ...addressQuery
+    ...addressQuery,
+    ...categoriesQuery,
   },
   Mutation: {
     ...userMutation,
