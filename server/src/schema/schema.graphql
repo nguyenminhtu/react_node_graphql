@@ -9,13 +9,11 @@ type Query {
 }
 
 type Mutation {
-  createUser(displayName: String!, userName: String!, password: String!): User
   updateUser(
-    _id: String!
     displayName: String
     userName: String
     password: String
-    categoryIds: [String]
+    categories: [String]
   ): User
   deleteUser(_id: String!): User
 
@@ -26,6 +24,16 @@ type Mutation {
     lat: String
     lng: String
     address: String
+    categories: [String]
+  ): Invitation
+  updateInvitation(
+    title: String
+    description: String
+    files: [Upload]
+    lat: String
+    lng: String
+    address: String
+    categories: [String]
   ): Invitation
 
   createAddress(
@@ -34,6 +42,8 @@ type Mutation {
     lat: String
     lng: String
   ): Address
+
+  createCategory(name: String): Category
 
   signin(userName: String!, password: String!): AuthPayload
   signup(
@@ -77,6 +87,7 @@ type Invitation {
   user: User
   images: [Image]
   address: Address
+  categories: [Category]
 }
 
 type AuthPayload {

@@ -1,4 +1,7 @@
+import mongoose from "mongoose";
+
 import Invitation from "../models/Invitation";
+import Category from "../models/Category";
 import getUser from "../utils/getUser";
 
 export default {

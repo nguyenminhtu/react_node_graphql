@@ -12,6 +12,8 @@ import invitationMutation from "./mutations/invitationMutation";
 import addressQuery from "./queries/addressQuery";
 import addressMutation from "./mutations/addressMutation";
 
+import categoryMutation from "./mutations/categoryMutation";
+
 const resolverMap: IResolvers = {
   Query: {
     ...userQuery,
@@ -22,7 +24,8 @@ const resolverMap: IResolvers = {
     ...userMutation,
     ...authMutation,
     ...invitationMutation,
-    ...addressMutation
+    ...addressMutation,
+    ...categoryMutation
   },
   Upload: GraphQLUpload
 };
