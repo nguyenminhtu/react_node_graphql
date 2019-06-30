@@ -4,11 +4,15 @@ type Query {
   users: [User]
   invitations: [Invitation]
   addresses: [Address]
-  userProfile: User
+  userProfile(_id: String!): User
+  currentUserProfile: User
   invitationDetail(_id: String!): Invitation
 }
 
 type Mutation {
+  init: String
+  reset: String
+
   updateUser(
     displayName: String
     userName: String
@@ -27,6 +31,7 @@ type Mutation {
     categories: [String]
   ): Invitation
   updateInvitation(
+    _id: String!
     title: String
     description: String
     files: [Upload]
@@ -67,7 +72,7 @@ type Address {
   title: String
   address: String
   user: User
-  locations: Location
+  location: Location
 }
 
 type Image {

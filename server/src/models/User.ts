@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import uniqueValidator from "mongoose-unique-validator";
 
 import { categorySchema } from "./Category";
 import { addressSchema } from "./Address";
@@ -16,8 +15,6 @@ const userSchema = new mongoose.Schema(
   },
   { collection: "users", timestamps: true }
 );
-
-userSchema.plugin(uniqueValidator);
 
 const User = mongoose.model("User", userSchema);
 

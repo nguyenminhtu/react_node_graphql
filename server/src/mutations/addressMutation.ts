@@ -9,7 +9,7 @@ export default {
     }
     const lat = parseFloat(args.lat);
     const lng = parseFloat(args.lng);
-    const locations = {
+    const location = {
       type: "Point",
       coordinates: [lng, lat]
     };
@@ -17,7 +17,7 @@ export default {
       title: args.title,
       address: args.address,
       user: user._id,
-      locations
+      location
     });
   }
 };

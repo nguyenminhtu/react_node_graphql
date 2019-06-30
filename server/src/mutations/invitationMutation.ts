@@ -12,7 +12,7 @@ export default {
     }
     const lat = parseFloat(args.lat);
     const lng = parseFloat(args.lng);
-    const locations = {
+    const location = {
       type: "Point",
       coordinates: [lng, lat]
     };
@@ -21,7 +21,7 @@ export default {
       : [];
     const address = await Address.create({
       address: args.address,
-      locations,
+      location,
       user: user._id
     });
     let promises: any = [];
@@ -44,5 +44,26 @@ export default {
     if (!user) {
       throw new Error("Unauthorize request");
     }
+    const invitation = await Invitation.findById(args._id);
+    const lat = parseFloat(args.lat);
+    const lng = parseFloat(args.lng);
+    const location = {
+      type: "Point",
+      coordinates: [lng, lat]
+    };
+    const images = args.files
+      ? await Promise.all(args.files.map(processUpload))
+      : [];
+    const address = await Address.create({
+      address: args.address,
+      location,
+      user: user._id
+    });
+    let promises: any = [];
+    args.categories.map((category: any) => {
+      return promises.push(Category.findById(category));
+    });
+    const categories = await Promise.all(promises);
+    return invitation;
   }
 };

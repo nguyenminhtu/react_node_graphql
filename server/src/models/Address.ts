@@ -4,7 +4,7 @@ export const addressSchema = new mongoose.Schema(
   {
     title: { type: String, require: true, default: "Unknown" },
     address: { type: String, require: true },
-    locations: {
+    location: {
       type: { type: String, default: "Point" },
       coordinates: { type: [Number], default: [0, 0] }
     },
@@ -13,7 +13,7 @@ export const addressSchema = new mongoose.Schema(
   { collection: "addresses", timestamps: true }
 );
 
-addressSchema.index({ locations: "2dsphere" });
+addressSchema.index({ location: "2dsphere" });
 
 const Address = mongoose.model("Address", addressSchema);
 

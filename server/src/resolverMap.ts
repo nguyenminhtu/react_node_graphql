@@ -13,6 +13,7 @@ import addressQuery from "./queries/addressQuery";
 import addressMutation from "./mutations/addressMutation";
 
 import categoryMutation from "./mutations/categoryMutation";
+import systemMutation from "./mutations/systemMutation";
 
 const resolverMap: IResolvers = {
   Query: {
@@ -25,7 +26,8 @@ const resolverMap: IResolvers = {
     ...authMutation,
     ...invitationMutation,
     ...addressMutation,
-    ...categoryMutation
+    ...categoryMutation,
+    ...systemMutation
   },
   Upload: GraphQLUpload
 };
